@@ -71,3 +71,75 @@ function addComment(button) {
   button.nextElementSibling.appendChild(commentDiv);
   input.value = '';
 }
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyDuXvByEr8XC63aUAy8Oo3FjmX8pg0mQt0",
+  authDomain: "my-portfolio-d953a.firebaseapp.com",
+  projectId: "my-portfolio-d953a",
+  storageBucket: "my-portfolio-d953a.firebasestorage.app",
+  messagingSenderId: "66196906882",
+  appId: "1:66196906882:web:26175ad8e3eef3bee2659b",
+  measurementId: "G-HTDHQJPH32"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// পোস্ট সাবমিশন
+document.getElementById('blog-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const title = document.getElementById('post-title').value.trim();
+  const content = document.getElementById('post-content').value.trim();
+  if (!title || !content) return;
+
+  const newPostRef = db.ref('posts').push();
+  newPostRef.set({
+    title,
+    content,
+    comments: []
+  });
+
+  document.getElementById('blog-form').reset();
+});
+
+// পোস্ট লোড করা
+db.ref('posts').on('value', snapshot => {
+  const posts = snapshot.val();
+  const container = document.getElementById('blog-posts');
+  container.innerHTML = '';
+
+  for (let id in posts) {
+    const post = posts[id];
+    const postDiv = document.createElement('div');
+    postDiv.className = 'blog-post';
+    postDiv.innerHTML = `
+      <h3>${post.title}</h3>
+      <p>${post.content}</p>
+      <div class="comment-section">
+        <input type="text" placeholder="মন্তব্য লিখুন..." class="comment-input">
+        <button onclick="addComment('${id}', this)">পাঠান</button>
+        <div class="comments">
+          ${(post.comments || []).map(c => `<div>🗨️ ${c}</div>`).join('')}
+        </div>
+      </div>
+    `;
+    container.prepend(postDiv);
+  }
+});
+
+// কমেন্ট যোগ করা
+function addComment(postId, button) {
+  const input = button.previousElementSibling;
+  const comment = input.value.trim();
+  if (!comment) return;
+
+  const commentsRef = db.ref(`posts/${postId}/comments`);
+  commentsRef.once('value', snapshot => {
+    const comments = snapshot.val() || [];
+    comments.push(comment);
+    commentsRef.set(comments);
+  });
+
+  input.value = '';
+}
