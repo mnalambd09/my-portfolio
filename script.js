@@ -23,23 +23,41 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 // ব্লগ পোস্ট সাবমিশন
 document.getElementById('blog-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const title = document.getElementById('post-title').value;
-  const content = document.getElementById('post-content').value;
+
+  const title = document.getElementById('post-title').value.trim();
+  const content = document.getElementById('post-content').value.trim();
+
+  if (title === '' || content === '') return;
 
   const postDiv = document.createElement('div');
   postDiv.className = 'blog-post';
+
   postDiv.innerHTML = `
     <h3>${title}</h3>
     <p>${content}</p>
     <div class="comment-section">
       <input type="text" placeholder="মন্তব্য লিখুন..." class="comment-input">
-      <button onclick="addComment(this)">পাঠান</button>
+      <button class="comment-button">পাঠান</button>
       <div class="comments"></div>
     </div>
   `;
 
   document.getElementById('blog-posts').prepend(postDiv);
   document.getElementById('blog-form').reset();
+});
+
+// কমেন্ট সাবমিশন
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.classList.contains('comment-button')) {
+    const input = e.target.previousElementSibling;
+    const commentText = input.value.trim();
+    if (commentText === '') return;
+
+    const commentDiv = document.createElement('div');
+    commentDiv.textContent = `🗨️ ${commentText}`;
+    e.target.nextElementSibling.appendChild(commentDiv);
+    input.value = '';
+  }
 });
 
 // মন্তব্য যোগ করার ফাংশন
