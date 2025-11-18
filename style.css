@@ -223,7 +223,6 @@ footer {
   margin-top: 10px;
   font-size: 14px;
 }
-
 @media (max-width: 480px) {
   .social-links a {
     display: block;
