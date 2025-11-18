@@ -75,6 +75,7 @@ function addComment(button) {
 const firebaseConfig = {
   apiKey: "AIzaSyDuXvByEr8XC63aUAy8Oo3FjmX8pg0mQt0",
   authDomain: "my-portfolio-d953a.firebaseapp.com",
+  databaseURL: "https://my-portfolio-d953a-default-rtdb.firebaseio.com",
   projectId: "my-portfolio-d953a",
   storageBucket: "my-portfolio-d953a.firebasestorage.app",
   messagingSenderId: "66196906882",
