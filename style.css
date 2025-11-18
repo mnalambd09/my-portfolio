@@ -129,16 +129,16 @@ footer {
 /* Dark Mode Toggle */
 #toggle-theme {
   position: fixed;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
+  padding: 10px 16px;
   background: #0078d7;
   color: white;
   border: none;
-  padding: 10px 14px;
   border-radius: 50px;
-  cursor: pointer;
   font-size: 14px;
-  z-index: 1000;
+  cursor: pointer;
+  z-index: 9999;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
