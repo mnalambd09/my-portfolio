@@ -20,3 +20,36 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
   document.getElementById('form-response').textContent = "আপনার বার্তা পাঠানো হয়েছে!";
 });
+// ব্লগ পোস্ট সাবমিশন
+document.getElementById('blog-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const title = document.getElementById('post-title').value;
+  const content = document.getElementById('post-content').value;
+
+  const postDiv = document.createElement('div');
+  postDiv.className = 'blog-post';
+  postDiv.innerHTML = `
+    <h3>${title}</h3>
+    <p>${content}</p>
+    <div class="comment-section">
+      <input type="text" placeholder="মন্তব্য লিখুন..." class="comment-input">
+      <button onclick="addComment(this)">পাঠান</button>
+      <div class="comments"></div>
+    </div>
+  `;
+
+  document.getElementById('blog-posts').prepend(postDiv);
+  document.getElementById('blog-form').reset();
+});
+
+// মন্তব্য যোগ করার ফাংশন
+function addComment(button) {
+  const input = button.previousElementSibling;
+  const commentText = input.value;
+  if (commentText.trim() === '') return;
+
+  const commentDiv = document.createElement('div');
+  commentDiv.textContent = `🗨️ ${commentText}`;
+  button.nextElementSibling.appendChild(commentDiv);
+  input.value = '';
+}
