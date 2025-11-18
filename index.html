@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>নূরের পোর্টফোলিও</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="toggle-theme">🌙 ডার্ক মোড</button>
+
+  <header class="fade-in">
+    <img src="profile.jpg" alt="নূরের ছবি" class="profile-pic">
+    <h1>নূর</h1>
+    <p>ওয়েব ডেভেলপার | ডিজাইনার | প্রযুক্তিপ্রেমী</p>
+    <div class="social-links">
+      <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+    </div>
+  </header>
+
+  <section class="about fade-in">
+    <h2>আমার সম্পর্কে</h2>
+    <p>আমি একজন আগ্রহী ওয়েব ডেভেলপার, যিনি নতুন প্রযুক্তি ও ডিজাইন নিয়ে কাজ করতে ভালোবাসি।</p>
+  </section>
+
+  <section class="projects fade-in">
+    <h2>আমার GitHub প্রজেক্ট</h2>
+    <ul id="github-projects"></ul>
+  </section>
+
+  <section class="contact fade-in">
+    <h2>যোগাযোগ করুন</h2>
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="আপনার নাম" required>
+      <input type="email" name="email" placeholder="ইমেইল" required>
+      <textarea name="message" placeholder="বার্তা লিখুন..." required></textarea>
+      <button type="submit">পাঠান</button>
+    </form>
+    <p id="form-response"></p>
+  </section>
+
+  <footer class="fade-in">
+    <p>© ২০২৫ নূর. সর্বস্বত্ব সংরক্ষিত।</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
