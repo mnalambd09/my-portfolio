@@ -71,7 +71,6 @@ function addComment(button) {
   button.nextElementSibling.appendChild(commentDiv);
   input.value = '';
 }
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDuXvByEr8XC63aUAy8Oo3FjmX8pg0mQt0",
   authDomain: "my-portfolio-d953a.firebaseapp.com",
@@ -82,10 +81,6 @@ const firebaseConfig = {
   appId: "1:66196906882:web:26175ad8e3eef3bee2659b",
   measurementId: "G-HTDHQJPH32"
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 // পোস্ট সাবমিশন
 document.getElementById('blog-form').addEventListener('submit', function(e) {
